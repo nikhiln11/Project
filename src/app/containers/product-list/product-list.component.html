@@ -1,0 +1,11 @@
+<div *ngIf="hasError; else Displayp">
+  No data found
+</div>
+<ng-template #Displayp>
+<div *ngFor="let item of data1">
+  <p>{{convertcode}}</p>
+<app-product [convert] = "convertcode" [data]="item" (btnclick)="cartadder($event)"></app-product>
+</div>
+</ng-template>
+
+

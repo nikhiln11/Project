@@ -1,0 +1,50 @@
+<form [formGroup]="checkoutForm" (submit)="saveData()">
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name" placeholder="Enter a Name!" />
+  </div>
+  <div *ngIf="checkoutForm.get('name')?.touched">
+    <!-- ? : safe navigation operator : to handle null values -->
+    <small *ngIf="checkoutForm.get('name')?.hasError('required')"
+      >Name is required</small
+    >
+    <small *ngIf="checkoutForm.get('name')?.hasError('minlength')">Min 5 chars is required</small>
+    <small *ngIf="checkoutForm.get('name')?.hasError('minlength')"
+    >Min
+    {{ checkoutForm.get("name")?.getError("minlength").requiredLength }}
+    chars is required</small
+  >
+  </div>
+  <div>
+    <label>Email</label>
+    <input type="text" formControlName="email" placeholder="Enter the Email-id"/>
+  </div>
+  <div *ngIf="checkoutForm.get('email')?.touched">
+    <!-- ? : safe navigation operator : to handle null values -->
+    <small *ngIf="checkoutForm.get('email')?.hasError('required')">Email-id is required</small>
+
+    <small *ngIf="checkoutForm.get('email')?.hasError('pattern')"
+        >Invalid email format</small
+      >
+  </div>
+  <div>
+    <label>ZipCode:</label>
+    <input type="text" formControlName="pincode" appNumbersOnly="6" placeholder="Enter the ZipCode"/>
+  </div>
+  <div *ngIf="checkoutForm.get('pincode')?.touched">
+    <!-- ? : safe navigation operator : to handle null values -->
+    <small *ngIf="checkoutForm.get('pincode')?.hasError('required')">ZipCode is required</small>
+
+    <small *ngIf="checkoutForm.get('pincode')?.hasError('zipcode')"
+        >This is invalid, </small
+      >
+      <small *ngIf="checkoutForm.get('pincode')?.hasError('zipcode')"
+        >A Valid Zipcode looks like
+        {{ checkoutForm.get("pincode")?.getError("zipcode").allowedCode }}
+         format</small
+      >
+  </div>
+  <button type="button" (click)="loadData()">Load</button>
+  <button type="submit">Submit</button>
+  <button type="button" (click)="patchData()">Patch</button>
+</form>

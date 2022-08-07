@@ -1,0 +1,16 @@
+<app-login-button></app-login-button>
+<nav>
+  <ul>
+    <li><a routerLink="/" >Home</a></li>
+    <li><a routerLink="/products" >Products</a></li>
+    <li><a routerLink="/checkout" >checkout</a></li>
+    <li><a routerLink="/login" >Login</a></li>
+  </ul>
+</nav>
+<app-currency (selected)="setCurrency($event)"></app-currency>
+<!--
+  <app-currency1 (setCur)="appfun($event)"></app-currency1>
+<app-product-list [convertcode]="selectedCode" ></app-product-list>
+-->
+<router-outlet></router-outlet>
+

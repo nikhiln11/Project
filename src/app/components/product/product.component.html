@@ -1,0 +1,11 @@
+<p>HI product works</p>
+<div>
+  <img [src]="data.productImage" width=400 height=700 title="Hella Easy!" [routerLink]="['/detail',data.productId]"/>
+  <h4>{{ data.productName | uppercase }}</h4>
+  <h5>{{ data.productPrice  | conversion : convert | currency : convert : 'symbol' : '7.3-3'}}</h5>
+  <button (click)="notifyParent()" *ngIf="data.productStock>0;else stock">Add to Cart</button>
+</div>
+<!-- id => template reference (#ref) -->
+<ng-template #stock>
+  <h4 style="border: 5px solid red" >Out of stock!Get a load of it for next time!</h4>
+</ng-template>
